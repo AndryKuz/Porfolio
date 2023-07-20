@@ -1,0 +1,33 @@
+.footer {
+    padding: 50px 0;
+}
+
+.footer__cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.social {
+    margin-bottom: 26px;
+}
+
+.social__item {
+    margin:17px;
+}
+.social__item:hover {
+    opacity: .5;
+    transition: all .3s ease 0s;
+}
+
+.social__item:last-child {
+    margin-right: 0;
+}
+
+.footer__text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #21243D;
+}

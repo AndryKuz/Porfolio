@@ -1,0 +1,113 @@
+
+
+/* Шаг -1 Скрываем меню при разрешении >767, фиксируем его, убираем его что бы оно было активно только при активной кнопке бургера  */
+@media(max-width: 767px) {
+    .menu__body {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 100px 30px 30px 30px;
+      transition: left .3s ease;
+      overflow: scroll;
+      display: none;
+    }
+    /* шаг - 2  - подстраиваем меню под активный бургер */
+    .menu__list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+    }
+    .menu__link {
+      color: #fff;
+      font-size: 24px;
+    }
+    .menu__list li:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  
+    /* шаг -3 фиксируем шапку и задаем ей цвет */
+    header {
+        background-color: #8695A4;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 600;
+        height: 70px;
+    }
+    /* шаг 3 - создаем кнопку бургера */
+    .menu__icon {
+        z-index: 5;
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 18px;
+        cursor: pointer;
+        margin-right: 30px;
+    }
+  
+    .menu__icon span,
+    .menu__icon::after,
+    .menu__icon:before {
+        left: 0;
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        transition: all .3s ease;
+        background-color: #fff;
+    }
+    .menu__icon::after,
+    .menu__icon:before {
+        content: "";
+    }
+    .menu__icon::after {
+        bottom: 0;
+    }
+    .menu__icon:before {
+        top: 0;
+    }
+    .menu__icon span {
+        top: 50%;
+        transform: scale(1) translate(0, -50%);
+    }
+     /* шаг 4 - аниммация кнопки бургера при active из 3 полосок превращаем в крестик с анимацией*/
+     .menu__icon._active span{
+        transform: scale(0) translate(0, -50%);
+    }
+    
+    .menu__icon._active::before {
+        top: 50%;
+        transform: rotate(-45deg) translate(0px, -50%)
+    }
+    .menu__icon._active::after {
+        top: 50%;
+        transform: rotate(45deg) translate(0px, 50%)
+    }
+    /* шаг 5 - меняем left( так как в обычном состоянии он у нас за екраном -100%, достаем его и выводим на явность display block */
+    .menu__body._active {
+        display: block;
+        left: 0;
+        transition: left .3s ease;
+        
+    }
+    /* шаг 5 - убираем скрол страницы при активном бургере 
+    вставляем код не в меди запросе, а в основном коде , в самом начале после обычного body
+    body._lock {
+      overflow: hidden;*/
+     // плашка для того что бы меню при скроле( если будет недостатточная высота для всего меню) не наезжало на шапку( логотип и сам бургер)
+    .menu__body::before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 70px;
+        background-color: rgba(0, 0, 0, 1);
+        z-index: 2;
+  
+    }
+  }
